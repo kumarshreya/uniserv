@@ -12,7 +12,7 @@ const db = mysql.createConnection({
 
 const bcrypt = require('bcryptjs');
 const session = require('express-session'); 
-
+app.use(express.static('public'));
 const passport = require('passport'); // Authentication middleware
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('express-flash');
