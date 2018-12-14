@@ -98,7 +98,12 @@ passport.deserializeUser(function(serverid, done) {
 
 // Homepage
 app.get('/', function(req, res){
-    res.render('index');
+    const user = req.user;
+    if (user) {
+        res.render('index',{loginStatus: 'Log Me Out'});
+    } else {
+        res.render('index',{loginStatus: 'Log Me In'});
+    }
 });
 
 // Individual blog post
