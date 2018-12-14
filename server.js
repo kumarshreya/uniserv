@@ -98,7 +98,7 @@ passport.deserializeUser(function(serverid, done) {
 
 // Homepage
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/uniserv2.html');
+    res.render('index');
 });
 
 // Individual blog post
