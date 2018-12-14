@@ -44,3 +44,6 @@ body {
     color: #808089;
 }
 
+.carousel-inner { 
+    height:500px;
+  }
