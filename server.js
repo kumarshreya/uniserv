@@ -12,20 +12,41 @@ const db = mysql.createConnection({
 
 const bcrypt = require('bcryptjs');
 const session = require('express-session'); 
+const bodyParser = require('body-parser')
+const exphbs = require('express-handlebars');  
+
 app.use(express.static('public'));
+const logger = require('./middleware/logger');
 const passport = require('passport'); // Authentication middleware
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('express-flash');
 
-app.use(passport.initialize()); // Needed to use Passport at all
-app.use(passport.session()); // Needed to allow for persistent sessions with passport
 
+app.use(logger.log);
+const hbs = exphbs.create({
+    helpers: {
+        formatDate: function (date) {
+            return moment(date).format('MMM DD, YYYY');
+        }
+    }
+})
 app.use(session({ 
     secret: 'ha8hWp,yoZF',  // random characters for secret
     cookie: { maxAge: 60000 }, // cookie expires after some time
     saveUninitialized: true,
     resave: true
 }))
+
+app.use(flash());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(passport.initialize()); // Needed to use Passport at all
+app.use(passport.session()); // Needed to allow for persistent sessions with passport
+
 
 passport.use(new LocalStrategy({
         passReqToCallback: true // Passes req to the callback function, so we can put messages there if needed
@@ -64,16 +85,16 @@ passport.use(new LocalStrategy({
 // This will be run after authentication
 // Just need ID for lookup later
 passport.serializeUser(function(user, done) {
-done(null, user.serverid);
+    done(null, user.serverid);
 });
 
 // Tells passport how to get user from information in session
 // This will run on every request for which session data exists in a cookie.
 passport.deserializeUser(function(serverid, done) {
-const q = `SELECT * FROM server WHERE serverid = ?;`
-db.query(q, [serverid], function (err, results, fields) {
-    done(err, results[0]) // results[0] will be stored _in req.user_ for use in later middleware
-});
+    const q = `SELECT * FROM server WHERE serverid = ?;`
+    db.query(q, [serverid], function (err, results, fields) {
+        done(err, results[0]) // results[0] will be stored _in req.user_ for use in later middleware
+    });
 })
 
 
@@ -93,73 +114,73 @@ app.get('/', function(req, res){
 //
 
 app.get('/login', function (req, res) {
-const user = req.user;
-if (user) {
-    // If we already have a user, don't let them see the login page, just send them to the admin!
-    res.redirect('/admin');
-} else {
-    res.render('login', { loginMessage: req.flash('loginMessage') })
-}
+    const user = req.user;
+    if (user) {
+        // If we already have a user, don't let them see the login page, just send them to the admin!
+        res.redirect('/admin');
+    } else {
+        res.render('login', { loginMessage: req.flash('loginMessage') })
+    }
 });
 
 app.post('/login', 
-// In this case, invoke the local authentication strategy.
-passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureRedirect: '/login',
-    failureFlash: true
-})
+    // In this case, invoke the local authentication strategy.
+    passport.authenticate('local', {
+        successRedirect: '/admin',
+        failureRedirect: '/login',
+        failureFlash: true
+    })
 );
 
 app.get('/register', function (req, res) {
-const user = req.user;
-if (user) {
-    res.redirect('/admin');
-} else {
-    res.render('register', { registerMessage: req.flash('registerMessage') })
-}
+    const user = req.user;
+    if (user) {
+        res.redirect('/admin');
+    } else {
+        res.render('register', { registerMessage: req.flash('registerMessage') })
+    }
 });
 
 app.post('/register', function (req, res) {
-const username = req.body.username;
-const pass = req.body.password;
-if (!username || !pass) {
-    req.flash('registerMessage', 'Username and password are required.')
-    return res.redirect('/register');
-}
-// Check if user exists, first
-const checkExists = `SELECT * FROM server WHERE username = ?`
-db.query(checkExists, [username], function (err, results, fields) {
-    if (err) {
-        console.error(err);
-        return res.status(500).send('Something bad happened...'); // Important: Don't execute other code
-    }
-    if (results[0]) {
-        req.flash('registerMessage', 'That username is already taken.');
+    const username = req.body.username;
+    const pass = req.body.password;
+    if (!username || !pass) {
+        req.flash('registerMessage', 'Username and password are required.')
         return res.redirect('/register');
     }
-    // Otherwise, user doesn't exist yet, let's create them!
-    
-    // Generate salt and pass for the user
-    bcrypt.genSalt(10, function (err, salt) {
-        if (err) throw err;
-        bcrypt.hash(pass, salt, function (err, hash) {
+    // Check if user exists, first
+    const checkExists = `SELECT * FROM server WHERE username = ?`
+    db.query(checkExists, [username], function (err, results, fields) {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Something bad happened...'); // Important: Don't execute other code
+        }
+        if (results[0]) {
+            req.flash('registerMessage', 'That username is already taken.');
+            return res.redirect('/register');
+        }
+        // Otherwise, user doesn't exist yet, let's create them!
+        
+        // Generate salt and pass for the user
+        bcrypt.genSalt(10, function (err, salt) {
             if (err) throw err;
-            // Add user to database with username and hash
-            const q = `INSERT INTO server(serverid, username, hash) VALUES (null, ?, ?)`;
-            db.query(q, [username, hash], function (err, results, fields) {
-                if (err) console.error(err);
-                req.flash('registerMessage', 'Account created successfully.');
-                res.redirect('/register');
+            bcrypt.hash(pass, salt, function (err, hash) {
+                if (err) throw err;
+                // Add user to database with username and hash
+                const q = `INSERT INTO server(serverid, username, hash) VALUES (null, ?, ?)`;
+                db.query(q, [username, hash], function (err, results, fields) {
+                    if (err) console.error(err);
+                    req.flash('registerMessage', 'Account created successfully.');
+                    res.redirect('/register');
+                })
             })
-        })
-    });
-})
+        });
+    })
 });
 
 app.get('/logout', function (req, res) {
-req.logout();
-res.redirect('/');
+    req.logout();
+    res.redirect('/');
 });
 
 //
@@ -167,8 +188,8 @@ res.redirect('/');
 //
 // All arguments after the route path ('/admin') are middleware – we can actually have multiple defined for one route!
 app.get('/admin', requireLoggedIn, function (req, res) {
-const user = req.user;
-res.render('admin', { user: user, adminMessage: req.flash.adminMessage } )
+    const user = req.user;
+    res.render('admin', { user: user, adminMessage: req.flash.adminMessage } )
 });
 
 function requireLoggedIn(req, res, next) {
