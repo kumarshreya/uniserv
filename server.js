@@ -16,20 +16,20 @@ const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars');  
 
 app.use(express.static('public'));
-//const logger = require('./middleware/logger');
+const logger = require('./middleware/logger');
 const passport = require('passport'); // Authentication middleware
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('express-flash');
 
 
-/*app.use(logger.log);
+app.use(logger.log);
 const hbs = exphbs.create({
     helpers: {
         formatDate: function (date) {
             return moment(date).format('MMM DD, YYYY');
         }
     }
-})*/
+})
 
 app.use(session({ 
     secret: 'ha8hWp,yoZF',  // random characters for secret
@@ -42,7 +42,7 @@ app.use(flash());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.engine('handlebars'); //edited
+app.engine('handlebars', hbs.engine); //edited
 app.set('view engine', 'handlebars');
 
 app.use(passport.initialize()); // Needed to use Passport at all
