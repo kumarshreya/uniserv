@@ -197,7 +197,10 @@ const listener = app.listen(process.env.PORT || 3306, function () {
     
 })*/
 
-$("#logbtn").on('click', function () {
-    $("#mainer").hide();
-})
+<script> 
+    $("#logbtn").on('click', function () {
+        $("#mainer").hide();
+    })
+</script>
+
 
