@@ -15,11 +15,13 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "express-flash": "0.0.2",
+    "xmlhttprequest": "*",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
     "passport": "^0.4.0",
+    "path": "*",
     "passport-local": "^1.0.0"
   }
 }

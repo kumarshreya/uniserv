@@ -1,5 +1,14 @@
 const express = require('express'); // Import Express
 const app = express(); // Instantiate Express
+const exphbs = require('express-handlebars');
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const bcrypt = require('bcryptjs');
+const session = require('express-session'); 
+const bodyParser = require('body-parser')
+const passport = require('passport'); // Authentication middleware
+const LocalStrategy = require('passport-local').Strategy;
+const flash = require('express-flash');
+
 
 const mysql = require('mysql'); 
 const db = mysql.createConnection({
@@ -10,26 +19,10 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-const bcrypt = require('bcryptjs');
-const session = require('express-session'); 
-const bodyParser = require('body-parser')
-const exphbs = require('express-handlebars');  
+const port = process.env.PORT || 8080;
 
 app.use(express.static('public'));
-const logger = require('./middleware/logger');
-const passport = require('passport'); // Authentication middleware
-const LocalStrategy = require('passport-local').Strategy;
-const flash = require('express-flash');
 
-
-app.use(logger.log);
-const hbs = exphbs.create({
-    helpers: {
-        formatDate: function (date) {
-            return moment(date).format('MMM DD, YYYY');
-        }
-    }
-})
 
 app.use(session({ 
     secret: 'ha8hWp,yoZF',  // random characters for secret
@@ -42,7 +35,7 @@ app.use(flash());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.engine('handlebars', hbs.engine); //edited
+app.engine('handlebars', exphbs()); //edited
 app.set('view engine', 'handlebars');
 
 app.use(passport.initialize()); // Needed to use Passport at all
@@ -118,7 +111,7 @@ app.get('/login', function (req, res) {
     const user = req.user;
     if (user) {
         // If we already have a user, don't let them see the login page, just send them to the admin!
-        res.redirect('/admin');
+        res.redirect('/');
     } else {
         res.render('login', { loginMessage: req.flash('loginMessage') })
     }
@@ -127,7 +120,7 @@ app.get('/login', function (req, res) {
 app.post('/login', 
     // In this case, invoke the local authentication strategy.
     passport.authenticate('local', {
-        successRedirect: '/admin',
+        successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true
     })
@@ -136,7 +129,7 @@ app.post('/login',
 app.get('/register', function (req, res) {
     const user = req.user;
     if (user) {
-        res.redirect('/admin');
+        res.redirect('/');
     } else {
         res.render('register', { registerMessage: req.flash('registerMessage') })
     }
@@ -171,8 +164,8 @@ app.post('/register', function (req, res) {
                 const q = `INSERT INTO server(serverid, username, hash) VALUES (null, ?, ?)`;
                 db.query(q, [username, hash], function (err, results, fields) {
                     if (err) console.error(err);
-                    req.flash('registerMessage', 'Account created successfully.');
-                    res.redirect('/register');
+                    req.flash('loginMessage', 'Account created successfully.');
+                    res.redirect('/login');
                 })
             })
         });
@@ -183,23 +176,6 @@ app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
-
-//
-// Logged In Functionality
-//
-// All arguments after the route path ('/admin') are middleware – we can actually have multiple defined for one route!
-app.get('/admin', requireLoggedIn, function (req, res) {
-    const user = req.user;
-    res.render('admin', { user: user, adminMessage: req.flash.adminMessage } )
-});
-
-function requireLoggedIn(req, res, next) {
-    const user = req.user;
-    if (!user) {
-        return res.status(401).redirect('/login')
-    }
-    next();
-}
 
 // 404 handler
 app.use(function (req, res, next) {
