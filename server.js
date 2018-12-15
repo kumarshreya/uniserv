@@ -149,7 +149,7 @@ app.post('/register', function (req, res) {
     const category = req.body.category;
     const service = req.body.service;
     const servicebio = req.body.servicebio;
-    const price = req.body.servicebio;
+    const price = req.body.price;
     if (!username || !pass) {
         req.flash('registerMessage', 'Username and password are required.')
         return res.redirect('/register');
