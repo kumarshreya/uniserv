@@ -143,6 +143,9 @@ app.get('/register', function (req, res) {
 app.post('/register', function (req, res) {
     const username = req.body.username;
     const pass = req.body.password;
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const ruemail= req.body.ruemail;
     if (!username || !pass) {
         req.flash('registerMessage', 'Username and password are required.')
         return res.redirect('/register');
@@ -166,8 +169,8 @@ app.post('/register', function (req, res) {
             bcrypt.hash(pass, salt, function (err, hash) {
                 if (err) throw err;
                 // Add user to database with username and hash
-                const q = `INSERT INTO server(serverid, username, hash) VALUES (null, ?, ?)`;
-                db.query(q, [username, hash], function (err, results, fields) {
+                const q = `INSERT INTO server(serverid, username, hash, fname, lname, ruemail) VALUES (null, ?, ?, ?, ?, ?)`;
+                db.query(q, [username, hash, fname, lname, ruemail], function (err, results, fields) {
                     if (err) console.error(err);
                     req.flash('loginMessage', 'Account created successfully.');
                     res.redirect('/login');
