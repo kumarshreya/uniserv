@@ -176,7 +176,7 @@ app.post('/register', function (req, res) {
                 db.query(q, [username, hash, fname, lname, ruemail, category, service, servicebio], function (err, results, fields) {
                     if (err) console.error(err);
                     req.flash('loginMessage', 'Account created successfully.');
-                    res.redirect('/');
+                    res.redirect('/login');
                 })
             })
         });
