@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {{> header}}
         <title>Login</title>    
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="stylesheet" href="/login.css" />
@@ -8,7 +9,7 @@
         
     </head>
     <body>
-        <div id="login-wrap">
+        <div id="login-wrap mx-auto">
             <form method="POST" class="login-form form">
                 <h1 class="logo">Freelancers: Log In to View Your Profile Here</h1>
                 {{#if loginMessage}}
