@@ -21,6 +21,7 @@ main {
 .card {
     width: 360px;
     height: 500px;
+    background-color: #b3b3b3;
 }
 
 .card-title {
