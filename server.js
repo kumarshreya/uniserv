@@ -140,6 +140,10 @@ app.get('/register', function (req, res) {
     }
 });
 
+app.get('/eyebrows', function (req,res) {
+    res.render('eyebrows')
+});
+
 app.post('/register', function (req, res) {
     const username = req.body.username;
     const pass = req.body.password;
