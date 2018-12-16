@@ -144,6 +144,21 @@ app.get('/eyebrows', function (req,res) {
     res.render('eyebrows')
 });
 
+//this is for eyebrows
+app.get('/eyebrows', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='eyebrows'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            articles: results
+        };
+
+        res.render('eyebrows', templateData);
+    });  
+});
+
 app.post('/register', function (req, res) {
     const username = req.body.username;
     const pass = req.body.password;
