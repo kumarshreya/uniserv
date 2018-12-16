@@ -7,6 +7,11 @@ h1 {
 }
 
 .card {
-    margin-top: 50px;
-    width: 150px;
+    width: 300px;
+}
+
+main {
+    margin-top:50px;
+    margin-left:50px;
+    margin-right:50px;
 }
