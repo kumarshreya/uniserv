@@ -10,3 +10,7 @@ body {
 .login-form {
     background-color: peachpuff;
 }
+
+.input-wrap {
+    text-align:left;
+}
