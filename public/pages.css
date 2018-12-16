@@ -13,8 +13,9 @@ main {
 }
 
 .card-img-top {
-    width: 200px;
-    height:200px;
+    margin-top: 25px;
+    width: 250px;
+    height:250px;
 }
 
 .card {
