@@ -6,3 +6,7 @@ body {
     margin-top: 50px;
     text-align:center;
 }
+
+.login-form {
+    background-color: peachpuff;
+}
