@@ -4,27 +4,27 @@
         <title>Login</title>    
         <link rel="stylesheet" href="/styles/login.css" />
         <link rel="stylesheet" href="/styles/forms.css" />
-        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     </head>
     <body>
         <div id="login-wrap">
             <form method="POST" class="login-form form">
-                <h1 class="logo">Freelancers: Log Into Your Profile Here</h1>
+                <h1 class="logo">Freelancers: Log In to View Your Profile Here</h1>
                 {{#if loginMessage}}
                 <div class="errorMessage">
                     {{loginMessage}}
                 </div>
                 {{/if}}
                 <div class="input-wrap">
-                    <label for="username">Username</label>
+                    <label for="username">Username: </label>
                     <input type="text" name="username" />
                 </div>
                 <div class="input-wrap">
-                    <label for="password">Password</label>
+                    <label for="password">Password: </label>
                     <input type="password" name="password" />
                 </div>
-                <button type="submit">Log In</button>
-                <a href="/register" class="switch" >Register</a>
+                <button type="submit">Log Me In</button> </br>
+                <a href="/register" class="switch" > Click here to Create a New Profile</a>
             </form>
         </div>
     </body>
