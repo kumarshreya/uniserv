@@ -140,9 +140,9 @@ app.get('/register', function (req, res) {
     }
 });
 
-app.get('/eyebrows', function (req,res) {
+/*app.get('/eyebrows', function (req,res) {
     res.render('eyebrows')
-});
+});*/
 
 //this is for eyebrows
 app.get('/eyebrows', function (req, res) {
@@ -152,7 +152,7 @@ app.get('/eyebrows', function (req, res) {
             console.error(err);
         }
         const templateData = {
-            articles: results
+            providers: results
         };
 
         res.render('eyebrows', templateData);
