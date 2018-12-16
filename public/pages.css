@@ -20,10 +20,14 @@ main {
 
 .card {
     width: 360px;
-    height: 600px;
+    height: 500px;
 }
 
 .card-title {
     color:#FE5C60;
     font-weight: bold;
+}
+
+.card-footer {
+    text-size: 18;
 }
