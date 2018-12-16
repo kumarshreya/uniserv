@@ -1,10 +1,10 @@
 body {
-    top:50%;
     font-family: 'Raleway', sans-serif!important;
 }
 
 .loginpg {
-    margin-top: 50px;
+    top:50%;
+    
     text-align:center;
 }
 
