@@ -42,3 +42,8 @@ let appdevelopment = document.getElementById('appdevelopment');
 appdevelopment.addEventListener('click', function(){
     window.location.href = '/appdevelopment';
 });
+
+let logo = document.getElementById('logo');
+logo.addEventListener('click', function(){
+    window.location.href = '/';
+});
