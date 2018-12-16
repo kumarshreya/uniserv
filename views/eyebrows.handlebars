@@ -9,21 +9,23 @@
     <body>
         <h1> Eyebrows </h1>
         <main>
-            {{#each providers}}
-            <provider>
-                <div class="card">
-                    <img class="card-img-top" src="avatar.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"> {{fname}} {{lname}} </h5>
-                        <p class="card-text">{{servicebio}}</p>
-                        <p class="card-text">I charge ${{price}}</p>
+            <div class="card-deck"> 
+                {{#each providers}}
+                <provider>
+                    <div class="card">
+                        <img class="card-img-top" src="avatar.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"> {{fname}} {{lname}} </h5>
+                            <p class="card-text">{{servicebio}}</p>
+                            <p class="card-text">I charge ${{price}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Contact Me: {{ruemail}}</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Contact Me: {{ruemail}}</small>
-                    </div>
-                </div>
-            </provider>
-            {{/each}}
+                </provider>
+                {{/each}}
+            </div>
         </main>
     </body>
 </html>
