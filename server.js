@@ -116,7 +116,7 @@ app.get('/login', function (req, res) {
     const user = req.user;
     if (user) {
         // If we already have a user, don't let them see the login page, just send them to the admin!
-        res.redirect('/');
+        res.redirect('/admin');
     } else {
         res.render('login', { loginMessage: req.flash('loginMessage') })
     }
@@ -125,7 +125,7 @@ app.get('/login', function (req, res) {
 app.post('/login', 
     // In this case, invoke the local authentication strategy.
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/admin',
         failureRedirect: '/login',
         failureFlash: true
     })
@@ -134,7 +134,7 @@ app.post('/login',
 app.get('/register', function (req, res) {
     const user = req.user;
     if (user) {
-        res.redirect('/');
+        res.redirect('/admin');
     } else {
         res.render('register', { registerMessage: req.flash('registerMessage') })
     }
@@ -309,6 +309,20 @@ app.post('/register', function (req, res) {
             })
         });
     })
+});
+
+function requireLoggedIn(req, res, next) {
+    const user = req.user;
+    if (!user) {
+        return res.status(401).redirect('/login')
+    }
+    next();
+}
+
+// All arguments after the route path ('/admin') are middleware – we can actually have multiple defined for one route!
+app.get('/admin', requireLoggedIn, function (req, res) {
+    const user = req.user;
+    res.render('admin', { user: user, adminMessage: req.flash.adminMessage } )
 });
 
 app.get('/logout', function (req, res) {
