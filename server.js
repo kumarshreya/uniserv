@@ -142,7 +142,7 @@ app.get('/register', function (req, res) {
 
 //This section is for all the dropdown items
 app.get('/eyebrows', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='eyebrows'`;
+    const q = `SELECT * FROM server WHERE service='eyebrows' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
@@ -170,7 +170,7 @@ app.get('/makeup', function (req, res) {
 });
 
 app.get('/haircut', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='haircut'`;
+    const q = `SELECT * FROM server WHERE service='haircut' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
@@ -184,7 +184,7 @@ app.get('/haircut', function (req, res) {
 });
 
 app.get('/dj', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='dj'`;
+    const q = `SELECT * FROM server WHERE service='dj' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
@@ -198,7 +198,7 @@ app.get('/dj', function (req, res) {
 });
 
 app.get('/mc', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='mc'`;
+    const q = `SELECT * FROM server WHERE service='mc' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
@@ -212,7 +212,7 @@ app.get('/mc', function (req, res) {
 });
 
 app.get('/webdesign', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='web design'`;
+    const q = `SELECT * FROM server WHERE service='web design' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
@@ -226,7 +226,7 @@ app.get('/webdesign', function (req, res) {
 });
 
 app.get('/graphicdesign', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='graphic design'`;
+    const q = `SELECT * FROM server WHERE service='graphic design' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
@@ -240,7 +240,7 @@ app.get('/graphicdesign', function (req, res) {
 });
 
 app.get('/appdevelopment', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='app development'`;
+    const q = `SELECT * FROM server WHERE service='app development' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
@@ -254,7 +254,7 @@ app.get('/appdevelopment', function (req, res) {
 });
 
 app.get('/photography', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='photography'`;
+    const q = `SELECT * FROM server WHERE service='photography' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
