@@ -22,11 +22,17 @@ main {
     width: 360px;
     height: 500px;
     background-color: #b3b3b3;
+    color: white;
 }
 
 .card-title {
     color:#FE5C60;
     font-weight: bold;
     text-align: center;
+}
+
+.card-footer {
+    background-color: black;
+
 }
 
