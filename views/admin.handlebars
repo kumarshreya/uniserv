@@ -9,19 +9,19 @@
     </head>
     <body>
         {{> header}}
-        <h1> Hey, {{fname}} - Check out your info below! </h1>
+        <h1> Hey, {{user.fname}} - Check out your info below! </h1>
         <main>
             <div class="card-deck mx-auto"> 
                 <provider>
                     <div class="card bg-dark">
                         <img class="card-img-top mx-auto" src="avatar.png" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title"> {{fname}} {{lname}} </h5>
-                            <p class="card-text"> {{servicebio}} </p>
+                            <h5 class="card-title"> {{user.fname}} {{user.lname}} </h5>
+                            <p class="card-text"> {{user.servicebio}} </p>
                         </div>
                         <div class="card-footer bg-light">
-                            <p class="card-text"> Price: ${{price}} </p>
-                            <small class="text-muted">Contact Me: {{ruemail}}</small>
+                            <p class="card-text"> Price: ${{user.price}} </p>
+                            <small class="text-muted">Contact Me: {{user.ruemail}}</small>
                         </div>
                     </div>
                 </provider>
