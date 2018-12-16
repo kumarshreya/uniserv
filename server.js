@@ -140,11 +140,7 @@ app.get('/register', function (req, res) {
     }
 });
 
-/*app.get('/eyebrows', function (req,res) {
-    res.render('eyebrows')
-});*/
-
-//this is for eyebrows
+//This section is for all the dropdown items
 app.get('/eyebrows', function (req, res) {
     const q = `SELECT * FROM server WHERE service='eyebrows'`;
     db.query(q, function (err, results, fields) {
@@ -156,6 +152,118 @@ app.get('/eyebrows', function (req, res) {
         };
 
         res.render('eyebrows', templateData);
+    });  
+});
+
+app.get('/makeup', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='makeup'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('makeup', templateData);
+    });  
+});
+
+app.get('/haircut', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='haircut'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('haircut', templateData);
+    });  
+});
+
+app.get('/dj', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='dj'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('dj', templateData);
+    });  
+});
+
+app.get('/mc', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='mc'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('mc', templateData);
+    });  
+});
+
+app.get('/webdesign', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='web design'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('webdesign', templateData);
+    });  
+});
+
+app.get('/graphicdesign', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='graphic design'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('graphicdesign', templateData);
+    });  
+});
+
+app.get('/appdevelopment', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='app development'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('appdevelopment', templateData);
+    });  
+});
+
+app.get('/photography', function (req, res) {
+    const q = `SELECT * FROM server WHERE service='photography'`;
+    db.query(q, function (err, results, fields) {
+        if (err) {
+            console.error(err);
+        }
+        const templateData = {
+            providers: results
+        };
+
+        res.render('photography', templateData);
     });  
 });
 
