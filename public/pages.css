@@ -20,13 +20,16 @@ main {
 
 .card {
     width: 360px;
-    height: 500px;
-    color: white;
+    height: 550px;
 }
 
+.card-body {
+    color: white;
+}
 .card-title {
     font-weight: bold;
     text-align: center;
+    color: white;
 }
 
 
