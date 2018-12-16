@@ -26,8 +26,6 @@ main {
 .card-title {
     color:#FE5C60;
     font-weight: bold;
+    text-align: center;
 }
 
-.card-footer {
-    font-size: 18;
-}
