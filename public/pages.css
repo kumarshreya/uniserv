@@ -11,3 +11,8 @@ h1 {
     margin-left: 50px;
     margin-right:50px;
 }
+
+.card-image-top {
+    width: 70px;
+    height: 70px;
+}
