@@ -156,7 +156,7 @@ app.get('/eyebrows', function (req, res) {
 });
 
 app.get('/makeup', function (req, res) {
-    const q = `SELECT * FROM server WHERE service='makeup'`;
+    const q = `SELECT * FROM server WHERE service='makeup' AND approved='y'`;
     db.query(q, function (err, results, fields) {
         if (err) {
             console.error(err);
