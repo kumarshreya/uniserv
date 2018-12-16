@@ -7,7 +7,7 @@ mylogger.addEventListener('click', function(){
     }
 });
 
-let mylogger = document.getElementById('browse1');
-mylogger.addEventListener('click', function(){
+let eyebrows = document.getElementById('eyebrows');
+eyebrows.addEventListener('click', function(){
     window.location.href = '/eyebrows';
 });
