@@ -6,3 +6,8 @@ mylogger.addEventListener('click', function(){
         window.location.href='/logout';
     }
 });
+
+let mylogger = document.getElementById('browse1');
+mylogger.addEventListener('click', function(){
+    window.location.href = '/eyebrows';
+});
