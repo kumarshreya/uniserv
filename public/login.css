@@ -20,5 +20,9 @@ body {
 .input-wrap {
     font-weight: bold;
     text-align: left;
-    margin-left: 47%
+    margin-left: 46%
+}
+
+.inputter {
+    width: 200px;
 }
