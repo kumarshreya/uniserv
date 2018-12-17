@@ -23,6 +23,7 @@ main {
 .card {
     width: 360px;
     height: 550px;
+    margin-bottom: 10px;
 }
 
 .card-body {
@@ -39,9 +40,7 @@ main {
     border-width: 0;
 }
     
-.card-footer {
-    margin-bottom: 10px;
-}
+
 
 
 
