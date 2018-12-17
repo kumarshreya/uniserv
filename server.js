@@ -150,12 +150,8 @@ app.get('/eyebrows', function (req, res) {
         const templateData = {
             providers: results
         };
-        const user = req.user;
-        if (user) {
-            res.render('eyebrows', templateData, {loginStatus: 'Log Me Out'});
-        } else {
-            res.render('eyebrows', templateData, {loginStatus: 'Log Me In'});
-        }
+
+        res.render('eyebrows', templateData);
     });  
 });
 
