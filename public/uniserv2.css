@@ -47,3 +47,8 @@ body {
 .carousel-inner { 
     height:500px;
   }
+ 
+.insta {
+    width:30px;
+    height:30px;
+}
