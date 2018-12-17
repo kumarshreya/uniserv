@@ -30,3 +30,8 @@ table {
 tbody {
     text-align: center;
 }
+
+#mylogger {
+    border-style: none;
+    border-width: 0;
+}
