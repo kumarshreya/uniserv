@@ -1,4 +1,4 @@
-
+// https://stackoverflow.com/questions/15759020/window-location-href-doesnt-redirect
 let mylogger = document.getElementById('mylogger');
 mylogger.addEventListener('click', function(){
     if(mylogger.textContent == 'Log Me In' || mylogger.innerText == 'Log Me In') {
