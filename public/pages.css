@@ -35,7 +35,7 @@ main {
 
 .mylogger {
     border-style: none;
-    border: 0;
+    border-width: 0;
 }
     
 
