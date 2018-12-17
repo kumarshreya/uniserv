@@ -33,8 +33,11 @@ main {
     color: white;
 }
 
-.mylogger (
-    border-size: 0;
-)
+.mylogger {
+    border-style: none;
+    border: 0;
+}
+    
+
 
 
