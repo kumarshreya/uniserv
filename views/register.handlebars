@@ -11,57 +11,75 @@
         {{> header}}
         <div id="login-wrap" class="regpg">
             <form method="POST" class="login-form form">
+            <table>
                 <h1 class="logo">Freelancers: Create Your Profile Here</h1>
                 {{#if registerMessage}}
                 <div class="errorMessage">
                     {{registerMessage}}
                 </div>
                 {{/if}}
-                
+                <tr> 
                 <div class="input-wrap">
                     <label for="username">Username: </label>
                     <input class="inputter" type="text" name="username" />
                 </div>
-                
+                </tr>
+                <tr>
                 <div class="input-wrap">
                     <label for="password">Password: </label>
                     <input type="password" name="password" />
                 </div>
+                </tr>
 
+                <tr>
                 <div class="input-wrap">
                     <label for="fname">First Name: </label>
                     <input type="text" name="fname" />
                 </div>
-                
+                </tr>
+
+                <tr>
                 <div class="input-wrap">
                     <label for="lname">Last Name: </label>
                     <input type="text" name="lname" />
                 </div>
-                
+                </tr>
+
+                <tr>
                 <div class="input-wrap">
                     <label for="ruemail">Rutgers Email: </label>
                     <input type="text" name="ruemail" />
                 </div>
-                
+                </tr>
+
+                <tr>
                 <div class="input-wrap">
                     <label for="category">Category (wellness/beauty, event, work): </label>
                     <input type="text" name="category" />
                 </div>
+                </tr>
 
+                <tr>
                 <div class="input-wrap">
                     <label for="service">Service within that category: </label>
                     <input type="text" name="service" />
                 </div>
+                </tr>
 
+                <tr>
                 <div class="input-wrap">
                     <label for="price">How much do you charge? </label>
                     <input type="number" name="price" />
                 </div>
+                </tr>
 
+                <tr>
                 <div class="input-wrap">
                     <label for="servicebio">Anything else you want your customers to know? </label>
                     <input type="text" name="servicebio" />
                 </div></br>
+                </tr>
+                </table>
                 <p> You will be notified once your service has been approved and posted! </p>
                 <button type="submit">Register</button>
             </form>
