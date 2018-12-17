@@ -35,3 +35,7 @@ tbody {
     border-style: none;
     border-width: 0;
 }
+
+input {
+    width:400px;
+}
