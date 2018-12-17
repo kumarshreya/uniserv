@@ -151,7 +151,7 @@ app.get('/eyebrows', function (req, res) {
             providers: results
         };
 
-        res.render('eyebrows', templateData, {loginStatus});
+        res.render('eyebrows', templateData);
     });  
 });
 
