@@ -37,5 +37,6 @@ tbody {
 }
 
 input {
+    margin-left: 10px;
     width:400px;
 }
