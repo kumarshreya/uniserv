@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/uniserv2.css">
     </head>
     <body>
+        {{> header}}
         <div id="login-wrap" class="loginpg">
             <form method="POST" class="login-form form">
                 <h1 class="logo">Freelancers: Create Your Profile Here</h1>
@@ -18,47 +19,47 @@
                 {{/if}}
                 
                 <div class="input-wrap">
-                    <label for="username">username</label>
+                    <label for="username">Username: </label>
                     <input type="text" name="username" />
                 </div>
                 
                 <div class="input-wrap">
-                    <label for="password">password</label>
+                    <label for="password">Password: </label>
                     <input type="password" name="password" />
                 </div>
 
                 <div class="input-wrap">
-                    <label for="fname">First Name</label>
+                    <label for="fname">First Name: </label>
                     <input type="text" name="fname" />
                 </div>
                 
                 <div class="input-wrap">
-                    <label for="lname">Last Name</label>
+                    <label for="lname">Last Name: </label>
                     <input type="text" name="lname" />
                 </div>
                 
                 <div class="input-wrap">
-                    <label for="ruemail">RU Email</label>
+                    <label for="ruemail">Rutgers Email: </label>
                     <input type="text" name="ruemail" />
                 </div>
                 
                 <div class="input-wrap">
-                    <label for="category">Category (wellness/beauty, event, work)</label>
+                    <label for="category">Category (wellness/beauty, event, work): </label>
                     <input type="text" name="category" />
                 </div>
 
                 <div class="input-wrap">
-                    <label for="service">Service within that category</label>
+                    <label for="service">Service within that category: </label>
                     <input type="text" name="service" />
                 </div>
 
                 <div class="input-wrap">
-                    <label for="price">How much do you charge?</label>
+                    <label for="price">How much do you charge? </label>
                     <input type="number" name="price" />
                 </div>
 
                 <div class="input-wrap">
-                    <label for="servicebio">Anything you want your customers to know? </label>
+                    <label for="servicebio">Anything else you want your customers to know? </label>
                     <input type="text" name="servicebio" />
                 </div></br>
 
