@@ -18,8 +18,7 @@ body {
 }
 
 .input-wrap {
-    font-weight: bold;
-    
+    font-weight: bold;  
 }
 
 .inputter {
@@ -27,5 +26,5 @@ body {
 }
 
 .submitlogin {
-    width: 200px;
+    width: 173px;
 }
