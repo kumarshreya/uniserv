@@ -35,7 +35,7 @@ app.use(flash());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.engine('handlebars', exphbs()); //edited
+app.engine('handlebars', exphbs()); 
 app.set('view engine', 'handlebars');
 
 app.use(passport.initialize()); // Needed to use Passport at all
@@ -92,10 +92,6 @@ passport.deserializeUser(function(serverid, done) {
 })
 
 
-/************************
-*        ROUTES         *
-*************************/
-
 // Homepage
 app.get('/', function(req, res){
     const user = req.user;
@@ -106,12 +102,8 @@ app.get('/', function(req, res){
     }
 });
 
-// Individual blog post
 
-//
-// ACCOUNT MANAGEMENT
-//
-
+//Managing login and admin pages
 app.get('/login', function (req, res) {
     const user = req.user;
     if (user) {
@@ -267,6 +259,7 @@ app.get('/photography', function (req, res) {
     });  
 });
 
+//Creating a new account
 app.post('/register', function (req, res) {
     const username = req.body.username;
     const pass = req.body.password;
@@ -319,7 +312,6 @@ function requireLoggedIn(req, res, next) {
     next();
 }
 
-// All arguments after the route path ('/admin') are middleware – we can actually have multiple defined for one route!
 app.get('/admin', requireLoggedIn, function (req, res) {
     const user = req.user;
     res.render('admin', { user: user, adminMessage: req.flash.adminMessage } )
@@ -340,15 +332,6 @@ const listener = app.listen(process.env.PORT || 3306, function () {
     console.log(`UNISERV APP listening on port ${listener.address().port}`);
 });
 
-/*$("[id^='browse']").on('click', function () {
-    $("#mainer").hide();
-    
-})*/
-
-
-/*$("#logbtn").on('click', function () {
-    $("#mainer").hide();
-})*/
 
 
 
