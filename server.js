@@ -38,8 +38,8 @@ app.use(express.static('public'));
 app.engine('handlebars', exphbs()); 
 app.set('view engine', 'handlebars');
 
-app.use(passport.initialize()); // Needed to use Passport at all
-app.use(passport.session()); // Needed to allow for persistent sessions with passport
+app.use(passport.initialize()); 
+app.use(passport.session()); 
 
 
 passport.use(new LocalStrategy({
@@ -75,15 +75,10 @@ passport.use(new LocalStrategy({
     }
 ))
 
-// Tells passport what information to include in the session
-// This will be run after authentication
-// Just need ID for lookup later
 passport.serializeUser(function(user, done) {
     done(null, user.serverid);
 });
 
-// Tells passport how to get user from information in session
-// This will run on every request for which session data exists in a cookie.
 passport.deserializeUser(function(serverid, done) {
     const q = `SELECT * FROM server WHERE serverid = ?;`
     db.query(q, [serverid], function (err, results, fields) {
@@ -107,7 +102,7 @@ app.get('/', function(req, res){
 app.get('/login', function (req, res) {
     const user = req.user;
     if (user) {
-        // If we already have a user, don't let them see the login page, just send them to the admin!
+        // If we already have a user, they go directly to the admin page
         res.redirect('/admin');
     } else {
         res.render('login', { loginMessage: req.flash('loginMessage') })
