@@ -1,7 +1,7 @@
 const express = require('express'); // Import Express
 const app = express(); // Instantiate Express
 const exphbs = require('express-handlebars');
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const bcrypt = require('bcryptjs');
 const session = require('express-session'); 
 const bodyParser = require('body-parser')
